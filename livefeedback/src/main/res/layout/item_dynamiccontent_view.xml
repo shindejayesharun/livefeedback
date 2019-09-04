@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~      https://mindorks.com/license/apache-v2
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cv_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="6dp">
+
+                <ImageView
+                        android:id="@+id/dynamic_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/common_google_signin_btn_icon_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+                <TextView
+                        android:id="@+id/dynamic_name"
+                        style="@style/TextStyle.Heading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:text="Title Name"
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/dynamic_image"/>
+
+
+                <TextView
+                        android:drawablePadding="8dp"
+                        android:id="@+id/tvWebView"
+                        style="@style/TextStyle.Title.Sub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="false"
+                        android:textSize="14sp"
+                        android:textAppearance="@style/TextAppearance.Text.Light"
+                        android:text="webview"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/dynamic_name"
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvArrowAction" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.498"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tvWebView"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</layout>

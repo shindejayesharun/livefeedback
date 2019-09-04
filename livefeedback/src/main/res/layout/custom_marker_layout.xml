@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/custom_marker_view"
+  android:layout_width="52dp"
+  android:layout_height="wrap_content">
+
+  <RelativeLayout
+    android:layout_width="50dp"
+    android:layout_height="59dp"
+    android:backgroundTint="@color/google"
+    android:background="@drawable/ic_location">
+    <TextView
+      android:text="Smart Tech india"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center" android:textSize="10sp"
+      android:layout_marginLeft="10dp"
+      android:textColor="#000" android:alpha="0.8"
+      android:background="@drawable/circle_gray"
+      android:id="@+id/name"
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true"
+      android:visibility="visible"/>
+  </RelativeLayout>
+
+</RelativeLayout>
+

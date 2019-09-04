@@ -1,0 +1,58 @@
+/*
+ *  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://mindorks.com/license/apache-v2
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License
+ */
+
+package sti.com.livefeedback.ui.main.stores;
+
+import androidx.databinding.ObservableField;
+import sti.com.livefeedback.data.model.api.StoreResponse;
+
+
+public class StoreItemViewModel {
+
+    public final ObservableField<String> storeId;
+    public final ObservableField<String> name;
+
+    public final ObservableField<String> area;
+
+    public final ObservableField<String> category;
+
+    public final ObservableField<String> logo;
+
+    public final StoreItemViewModelListener mListener;
+
+
+    private final StoreResponse.Blog mBlog;
+
+    public StoreItemViewModel(StoreResponse.Blog blog, StoreItemViewModelListener listener) {
+        this.mBlog = blog;
+        this.mListener = listener;
+        storeId = new ObservableField<>(mBlog.getStoreId());
+        name = new ObservableField<>(mBlog.getName());
+        area = new ObservableField<>(mBlog.getArea());
+        logo = new ObservableField<>(mBlog.getLogo());
+        category = new ObservableField<>(mBlog.getCategory());
+
+    }
+
+    public void onItemClick() {
+        mListener.onItemClick(mBlog.getStoreId());
+    }
+
+    public interface StoreItemViewModelListener {
+
+        void onItemClick(String blogUrl);
+    }
+}

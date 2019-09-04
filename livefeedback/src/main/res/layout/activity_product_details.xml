@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="sti.com.livefeedback.ui.storedetails.StoreDetailsActivity">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="viewModel"
+                type="sti.com.livefeedback.ui.productdetails.ProductDetailsViewModel"/>
+
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="false">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:fitsSystemWindows="false"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/toolbar_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/translucent_white">
+                        <androidx.viewpager.widget.ViewPager
+                                android:id="@+id/pager"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="8dp"
+                                app:layout_collapseMode="parallax"
+                        />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+
+                    <ImageButton
+                            android:id="@+id/navBackBtn"
+                            style="@style/Button.ImageButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:background="@color/transparent"
+                            android:tint="@color/black"
+                            app:srcCompat="@drawable/ic_keyboard_backspace_24px"/>
+
+                    <TextView
+                            style="@style/TextStyle.Heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:layout_weight="1"/>
+                    <ImageView
+                            android:layout_width="32dp" android:layout_height="32dp"
+                            android:src="@drawable/ic_shopping_cart"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.core.widget.NestedScrollView
+                    android:id="@+id/plant_detail_scrollview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="16sp"
+                    android:overScrollMode="never"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/product_name"
+                            style="?android:attr/textAppearanceLarge"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="6dp"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"/>
+
+
+                    <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="4"
+                            android:paddingLeft="8dp">
+                        <TextView
+                                android:id="@+id/tvPriceLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Price"
+                        />
+                        <TextView
+                                android:id="@+id/tvPriceValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                        />
+                        <TextView
+                                android:id="@+id/tvOfferLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Offer"
+                        />
+                        <TextView
+                                android:id="@+id/tvOfferValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                        />
+                    </LinearLayout>
+                    <LinearLayout
+                            android:id="@+id/llKeyValues"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"/>
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="4dp"
+                                app:cardCornerRadius="4dp"
+                                app:cardUseCompatPadding="true">
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                <com.google.android.material.tabs.TabLayout
+                                        android:id="@+id/tabLayout"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/light_gray"
+                                >
+                                </com.google.android.material.tabs.TabLayout>
+
+                                <androidx.viewpager.widget.ViewPager
+                                        android:id="@+id/viewPager"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1200dp"
+                                        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+                                        tools:layout_editor_absoluteX="8dp"/>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+
+                        <androidx.cardview.widget.CardView
+                                android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="6dp"
+                                app:cardUseCompatPadding="true"
+                                app:cardPreventCornerOverlap="true">
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/tabbed_details_recyclerview"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"/>
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/address_looking_up"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
+    </FrameLayout>
+
+</layout>
