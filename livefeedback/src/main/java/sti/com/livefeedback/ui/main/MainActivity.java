@@ -25,9 +25,12 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -35,6 +38,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 import sti.com.livefeedback.BR;
 import sti.com.livefeedback.BuildConfig;
@@ -74,8 +78,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private SwipePlaceHolderView mCardsContainerView;
     private DrawerLayout mDrawer;
     private MainViewModel mMainViewModel;
-    private NavigationView mNavigationView;
+    public NavigationView mNavigationView;
+    private BottomSheetBehavior<View> behavior;
     private Toolbar mToolbar;
+    Boolean bottomSheetExapand=false;
 
 
     public static Intent newIntent(Context context) {
@@ -147,6 +153,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case R.id.action_search:
                 showAboutFragment();
                 return true;
+            case R.id.action_layers:
+                if(bottomSheetExapand){
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    bottomSheetExapand=false;
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_location_off));
+                }else {
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    bottomSheetExapand=true;
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_location_on));
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -169,6 +186,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mActivityMainBinding = getViewDataBinding();
         mMainViewModel.setNavigator(this);
         setUp();
+
+        bottomSheetSetting();
+
+    }
+
+    private void bottomSheetSetting() {
+        View bottomSheet = findViewById(R.id.llBottomView);
+        behavior = BottomSheetBehavior.from(bottomSheet);
+
+        final LinearLayout inner = findViewById(R.id.store_list);
+        inner.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                inner.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                //View hidden = inner.getChildAt(2);
+                //behavior.setPeekHeight();
+                //behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+            }
+        });
     }
 
     @Override
